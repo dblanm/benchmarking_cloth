@@ -1,0 +1,74 @@
+<mujoco>
+	<compiler strippath="true" meshdir="meshes/" texturedir="textures" />
+
+	<option timestep="0.01" integrator="implicitfast" viscosity="0.3" solver="CG" tolerance="1e-6">
+		<flag energy="enable" />
+	</option>
+
+	<extension>
+		<plugin plugin="mujoco.elasticity.shell" />
+	</extension>
+
+    <visual>
+        <headlight ambient="0.4 0.4 0.4" diffuse="0.6 0.6 0.6" specular="0.2 0.2 0.2" />
+    </visual>
+    <asset>
+        <texture name="texplane" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" />
+        <texture name="texplane2" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" />
+        <texture name="texplane3" type="2d" builtin="checker" rgb1=".2 .3 .4" rgb2=".1 0.15 0.2" width="512" height="512" />
+        <material name="floorplane" reflectance="0.01" shininess="0.0" specular="0.0" texrepeat="2 2" texture="texplane" texuniform="true" />
+        <material name="floorplane2" reflectance="0.01" shininess="0.0" specular="0.0" texrepeat="2 2" texture="texplane2" texuniform="true" />
+        <material name="floorplane3" reflectance="0.01" shininess="0.0" specular="0.0" texrepeat="2 2" texture="texplane2" texuniform="true" />
+
+        <texture name="cloth_texture" type="2d" file="/home/barbany/dynamic_dual_manip/bcm/envs/mujoco/../../assets/textures/chequered_rag.png" />
+        <material name="cloth_material" texture="cloth_texture" />
+
+
+        <texture name="table_real_texture" type="cube" file="textures/lightwood.png" />
+        <material name="table_real_material" texture="table_real_texture" />
+
+        <texture name="floor_real_texture" type="2d" file="textures/wall.png" />
+        <material name="floor_real_material" texture="floor_real_texture" />
+
+
+        <texture name="white_borders" type="2d" file="textures/white_borders.png" />
+        <material name="white_borders" texture="white_borders" />
+
+    </asset>
+    <worldbody>
+        <geom name="ground" pos="0 0 0" size="5 5 10" type="plane" contype="1" conaffinity="1" material="floorplane" />
+
+        <body name="tabletop" pos="0.3 0 0.150">
+            <geom name="la_tabla_vis" type="box" material="table_real_material" pos="0.0 0.0 0.0" size="0.4 0.80 0.05" group="1" />
+        </body>
+		<flexcomp name="cloth" type="mesh" radius="0.01" dim="2" pos="0.0 0.6 1.0" mass="2.552954456795875" material="cloth_material" file="rag.obj">
+			<edge equality="true" damping="1.0" />
+			<contact solref="0.003" />
+			<plugin plugin="mujoco.elasticity.shell">
+				<config key="poisson" value="0.4032740512363587" />
+				<config key="thickness" value="0.0005" />
+				<config key="young" value="85242.02369946481" />
+			</plugin>
+		</flexcomp>
+
+        <body mocap="true" name="lookatbody" pos="0 0 0" />
+
+        <light cutoff="100" diffuse="1 1 1" dir="-0 0 -1.3" directional="true" exponent="1" pos="0 0 1.3" specular=".1 .1 .1" />
+
+        <camera name="track" mode="trackcom" pos="0 0 0" euler="90 180 0" fovy="75" />
+
+        <body mocap="true" name="robot0:mocap" pos="0.0 0.0  1.0">
+            <geom group="1" name="mocap0" conaffinity="0" contype="0" pos="0  0  0" rgba="0 0 1 1" size="0.005 0.005 0.005" type="box" />
+        </body>
+
+        <body mocap="true" name="robot1:mocap" pos="0.5 0.0  1.0">
+            <geom group="1" name="mocap1" conaffinity="0" contype="0" pos="0  0  0" rgba="0 0 1 1" size="0.005 0.005 0.005" type="box" />
+        </body>
+    </worldbody>
+
+    <equality>
+        <weld body1="robot0:mocap" body2="cloth_0" name="grasp0" />
+        <weld body1="robot1:mocap" body2="cloth_396" name="grasp1" />
+    </equality>
+
+</mujoco>

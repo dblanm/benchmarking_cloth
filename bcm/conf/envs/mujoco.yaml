@@ -1,0 +1,68 @@
+---
+name: mujoco
+render_mode: rgb_array
+depth: true
+#width: 640
+#height: 640
+width: 320
+height: 288
+params:
+  flatinertia: 0.016756
+  joint_damping: 0.0005
+  tendon_damping: 0.0005
+  tendon_stiffness: 0.001
+  geom_mass: 0.0001
+params_chequered_rag_0:
+  flatinertia: 0.019268840841258128
+  joint_damping: 0.00938492615772985
+  tendon_damping: 0.0195213269436966
+  tendon_stiffness: 0.017440138440176275
+  geom_mass: 0.003974979790513922
+params_chequered_rag_1:
+  flatinertia: 0.01953515789177614
+  joint_damping: 0.008761514112080577
+  tendon_damping: 0.09645065341305561
+  tendon_stiffness: 0.011407562664117332
+  geom_mass: 0.0032425370121608446
+params_chequered_rag_2:
+  flatinertia: 0.008441840014491721
+  joint_damping: 0.00928784937173085
+  tendon_damping: 0.09100517309975295
+  tendon_stiffness: 0.019686019970153228
+  geom_mass: 0.0035177230008948766
+params_towel_rag_0:
+  flatinertia: 0.009456189322497189
+  joint_damping: 0.0016833735173287438
+  tendon_damping: 0.043676569048817025
+  tendon_stiffness: 0.021987303338460728
+  geom_mass: 0.003268651573782642
+params_towel_rag_1:
+  flatinertia: 0.009456189322497189
+  joint_damping: 0.0016833735173287438
+  tendon_damping: 0.043676569048817025
+  tendon_stiffness: 0.021987303338460728
+  geom_mass: 0.003268651573782642
+params_towel_rag_2:
+  flatinertia: 0.009456189322497189
+  joint_damping: 0.0016833735173287438
+  tendon_damping: 0.043676569048817025
+  tendon_stiffness: 0.021987303338460728
+  geom_mass: 0.003268651573782642
+params_white_rag_0:
+  flatinertia: 0.011176372899421059
+  joint_damping: 0.0022034162523616434
+  tendon_damping: 0.0017446125282885305
+  tendon_stiffness: 0.037663848062246305
+  geom_mass: 0.00499070197455328
+params_white_rag_1:
+  flatinertia: 0.015079253724033993
+  joint_damping: 0.008758017037875668
+  tendon_damping: 0.03921880739842254
+  tendon_stiffness: 0.036283467499740936
+  geom_mass: 0.003712780448606054
+params_white_rag_2:
+  flatinertia: 0.015079253724033993
+  joint_damping: 0.008758017037875668
+  tendon_damping: 0.03921880739842254
+  tendon_stiffness: 0.036283467499740936
+  geom_mass: 0.003712780448606054

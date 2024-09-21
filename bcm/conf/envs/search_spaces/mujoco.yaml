@@ -1,0 +1,16 @@
+---
+#envs.params.flatinertia: interval(0.001, 0.02)
+#envs.params.joint_damping: interval(0.0001, 0.01)
+##envs.params.joint_stiffness: interval(0.0001, 0.001)
+#envs.params.tendon_damping: interval(0.0001, 0.1)
+#envs.params.tendon_stiffness: interval(0.0001, 0.05)
+##envs.params.geom_friction: interval(0.5, 1.5)
+#envs.params.geom_mass: interval(0.0001, 0.005)
+
+envs.params.flatinertia: interval(0.001, 0.2)
+envs.params.joint_damping: interval(0.0001, 0.1)
+#envs.params.joint_stiffness: interval(0.0001, 0.001)
+envs.params.tendon_damping: interval(0.0001, 0.5)
+envs.params.tendon_stiffness: interval(0.0001, 0.5)
+#envs.params.geom_friction: interval(0.5, 1.5)
+envs.params.geom_mass: interval(0.0001, 0.05)

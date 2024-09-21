@@ -1,0 +1,46 @@
+---
+defaults:
+  - _self_
+  - envs: mujoco
+  - vision: mp_sft
+  - envs/search_spaces@hydra.sweeper.params: ${envs}
+  - override hydra/hydra_logging: disabled
+  - override hydra/job_logging: disabled
+  - override hydra/sweeper: custom_sweeper
+  - override hydra/sweeper/sampler: tpe
+seed: 123
+save_gif: false
+gif_fps: 20
+plot: false
+primitive: dynamic # "dynamic" and "quasi-static"" supported
+max_steps: 0
+data_path: ${oc.env:HOME}/datasets/Benchmarking_cloth
+cloth_sample: chequered_rag_0
+target: chequered_rag_2
+target_path: ${data_path}/${target}/${primitive}/cloud
+output_path: ${envs.name}/${target}/${primitive}
+real_setup:
+  table:
+    xmin: -0.4
+    xmax: 0.4
+    ymin: -0.1
+    ymax: 0.8
+    zmax: 0.195
+  gripper_start:
+    left: [0.0, 0.0, 1.0]
+    right: [0.5, 0.0, 1.0]
+hydra:
+  output_subdir:
+  run:
+    dir: .
+  sweeper:
+    sampler:
+      seed: ${seed}
+    direction: minimize
+    study_name: ${output_path}
+    storage:
+    n_trials: 500
+    n_jobs: 1
+  sweep:
+    dir: multirun/${hydra.sweeper.sampler._target_}/${hydra.sweeper.study_name}
+    subdir: .

@@ -1,0 +1,147 @@
+---
+name: sofa
+render_mode: rgb_array
+depth: false
+ode_solver_tolerance: 1e-09
+ode_solver_threshold: 1e-100
+ode_solver_iter: 25  # 20
+dt: 0.01  # 0.005 for 0.05
+params:
+  # 80 - 240? 240 not stable
+  youngmodulus: 100  # 80
+  # 0.3
+  poissonratio: 0.01  # 0.3
+  # 1.0
+  damping: 1.0
+  # 50-300
+  stiffness: 300  # 50
+#  vertex_mass: 0.1  # Below 0.1 breaks the sim
+  vertex_mass: 0.1
+  scale: 100.0
+params_quasi_static_cotton_rag_0:
+  youngmodulus: 50050.0
+  poissonratio: 0.670433876906383
+  damping: 2.8513847885784283
+  stiffness: 75.47510191238139
+  vertex_mass: 0.33740244292477833
+  scale: 100.0
+params_quasi_static_cotton_rag_1:
+  youngmodulus: 50050.0
+  poissonratio: 0.670433876906383
+  damping: 2.8513847885784283
+  stiffness: 75.47510191238139
+  vertex_mass: 0.33740244292477833
+  scale: 100.0
+params_quasi_static_cotton_rag_2:
+  youngmodulus: 50050.0
+  poissonratio: 0.670433876906383
+  damping: 2.8513847885784283
+  stiffness: 75.47510191238139
+  vertex_mass: 0.33740244292477833
+  scale: 100.0
+params_quasi_static_chequered_rag_0:
+  youngmodulus: 50050.0
+  poissonratio: 0.8952664411864485
+  damping: 2.874959814124119
+  stiffness: 75.54689754132077
+  vertex_mass: 0.7583423228506957
+  scale: 100.0
+params_quasi_static_chequered_rag_1:
+  youngmodulus: 50050.0
+  poissonratio: 0.8952664411864485
+  damping: 2.874959814124119
+  stiffness: 75.54689754132077
+  vertex_mass: 0.7583423228506957
+  scale: 100.0
+params_quasi_static_chequered_rag_2:
+  youngmodulus: 50050.0
+  poissonratio: 0.8952664411864485
+  damping: 2.874959814124119
+  stiffness: 75.54689754132077
+  vertex_mass: 0.7583423228506957
+  scale: 100.0
+params_quasi_static_linen_rag_0:
+  youngmodulus: 50050.0
+  poissonratio: 0.7572153568626752
+  damping: 2.5856149205260732
+  stiffness: 75.1391985389496
+  vertex_mass: 0.7484876448104925
+  scale: 100.0
+params_quasi_static_linen_rag_1:
+  youngmodulus: 50050.0
+  poissonratio: 0.7572153568626752
+  damping: 2.5856149205260732
+  stiffness: 75.1391985389496
+  vertex_mass: 0.7484876448104925
+  scale: 100.0
+params_quasi_static_linen_rag_2:
+  youngmodulus: 50050.0
+  poissonratio: 0.7572153568626752
+  damping: 2.5856149205260732
+  stiffness: 75.1391985389496
+  vertex_mass: 0.7484876448104925
+  scale: 100.0
+#  ===== DYNAMIC ====
+params_dynamic_cotton_rag_0:
+  youngmodulus: 50050.0
+  poissonratio: 0.9552282014564284
+  damping: 2.878125651682645
+  stiffness: 75.94445998395658
+  vertex_mass: 0.2598125268360747
+  scale: 100.0
+params_dynamic_cotton_rag_1:
+  youngmodulus: 50050.0
+  poissonratio: 0.9552282014564284
+  damping: 2.878125651682645
+  stiffness: 75.94445998395658
+  vertex_mass: 0.2598125268360747
+  scale: 100.0
+params_dynamic_cotton_rag_2:
+  youngmodulus: 50050.0
+  poissonratio: 0.9552282014564284
+  damping: 2.878125651682645
+  stiffness: 75.94445998395658
+  vertex_mass: 0.2598125268360747
+  scale: 100.0
+params_dynamic_chequered_rag_0:
+  youngmodulus: 50050.0
+  poissonratio: 0.9580301850092969
+  damping: 3.1753208234674863
+  stiffness: 75.42132355437278
+  vertex_mass: 0.2677398573086579
+  scale: 100.0
+params_dynamic_chequered_rag_1:
+  youngmodulus: 50050.0
+  poissonratio: 0.9580301850092969
+  damping: 3.1753208234674863
+  stiffness: 75.42132355437278
+  vertex_mass: 0.2677398573086579
+  scale: 100.0
+params_dynamic_chequered_rag_2:
+  youngmodulus: 50050.0
+  poissonratio: 0.9580301850092969
+  damping: 3.1753208234674863
+  stiffness: 75.42132355437278
+  vertex_mass: 0.2677398573086579
+  scale: 100.0
+params_dynamic_linen_rag_0:
+  youngmodulus: 50050.0
+  poissonratio: 0.9059487044818554
+  damping: 3.181238456417917
+  stiffness: 75.5642105194645
+  vertex_mass: 0.13500646948558814
+  scale: 100.0
+params_dynamic_linen_rag_1:
+  youngmodulus: 50050.0
+  poissonratio: 0.9059487044818554
+  damping: 3.181238456417917
+  stiffness: 75.5642105194645
+  vertex_mass: 0.13500646948558814
+  scale: 100.0
+params_dynamic_linen_rag_2:
+  youngmodulus: 50050.0
+  poissonratio: 0.9059487044818554
+  damping: 3.181238456417917
+  stiffness: 75.5642105194645
+  vertex_mass: 0.13500646948558814
+  scale: 100.0

@@ -1,0 +1,82 @@
+# The docker file is built follwing heavily the instructions here:
+# https://medium.com/@benjamin.botto/opengl-and-cuda-applications-in-docker-af0eece000f1
+FROM nvidia/cuda:9.2-devel-ubuntu18.04
+
+# Define the sourceforce, libjpeg, virtual gl and turbovnc arguments
+ARG SOURCEFORGE=https://sourceforge.net/projects
+ARG TURBOVNC_VERSION=2.2.7
+ARG VIRTUALGL_VERSION=2.6.5
+ARG LIBJPEG_VERSION=2.0.6
+
+# Env vars for the nvidia-container-runtime.
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
+
+# Install miniconda using the qdc yaml file - about 463.7s with torch, 200s without
+ADD qdc_manip.yml /tmp/qdc_manip.yml
+
+# Environment variables for conda
+ENV CONDA_DIR=/opt/conda
+ENV PATH=${CONDA_DIR}/bin:$PATH
+
+# Dependencies for glvnd, X11, EGL and OpenEXR.
+# Then get blender 2.82 and install it
+# Finally get conda and create the environment
+RUN apt-get update \
+  && apt-get install -y -qq --no-install-recommends \
+  libglvnd0 \
+  libgl1 \
+  libglx0 \
+  libegl1 \
+  libxext6 \
+  libx11-6 \
+  wget \
+  xauth x11-xkb-utils xkb-data libxtst6 libxv1\
+  cmake build-essential libgl1-mesa-dev freeglut3-dev libglfw3-dev libgles2-mesa-dev \
+  mesa-common-dev libglu1-mesa-dev \
+  libgles2-mesa-dev openexr \
+  libopenexr-dev \
+  && rm -rf /var/lib/apt/lists/* \
+  && mkdir /workspace/ \
+  && wget --quiet https://download.blender.org/release/Blender2.82/blender-2.82a-linux64.tar.xz \
+  && tar -xJf blender-2.82a-linux64.tar.xz \
+  && mv blender-2.82a-linux64 /workspace/blender-2.82a \
+  && rm blender-2.82a-linux64.tar.xz \
+  && wget --quiet ${SOURCEFORGE}/libjpeg-turbo/files/${LIBJPEG_VERSION}/libjpeg-turbo-official_${LIBJPEG_VERSION}_amd64.deb \
+  && wget --quiet ${SOURCEFORGE}/virtualgl/files/${VIRTUALGL_VERSION}/virtualgl_${VIRTUALGL_VERSION}_amd64.deb \
+  && wget --quiet ${SOURCEFORGE}/turbovnc/files/${TURBOVNC_VERSION}/turbovnc_${TURBOVNC_VERSION}_amd64.deb \
+  && dpkg -i *.deb \
+  && rm -f *.deb \
+  && wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+  -O ~/miniconda.sh \
+  &&/bin/bash ~/miniconda.sh -b -p /opt/conda \
+  && conda env create -f /tmp/qdc_manip.yml \
+  && conda clean -afy && rm ~/miniconda.sh
+
+
+ENV PATH ${PATH}:/opt/VirtualGL/bin:/opt/TurboVNC/bin
+# Set PyFlex environment variables and copy the flingbot PyFlex directory
+ENV PYFLEXROOT=/workspace/PyFlex
+ENV PYTHONPATH=${PYFLEXROOT}/bindings/build:$PYTHONPATH
+ENV LD_LIBRARY_PATH=${PYFLEXROOT}/external/SDL2-2.0.4/lib/x64:$LD_LIBRARY_PATH
+
+#RUN wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+#  -O ~/miniconda.sh && \
+#  /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+#  conda env create -f /tmp/qdc_manip.yml
+
+# Clean conda, remove the miniconda.sh and create the workspace
+# RUN conda clean -afy && rm ~/miniconda.sh & mkdir /workspace/ && cd /workspace/
+
+# Change workdir to PyFlex, activate the conda environment and run the compile script
+ADD ./deps/flingbot/PyFlex /workspace/PyFlex
+# . is the sh equivalante of source in bash
+RUN cd /workspace/PyFlex && /bin/bash -c "source ${CONDA_DIR}/bin/activate qdc_manip && /workspace/PyFlex/compile.sh"
+
+ENV CONDA_DEFAULT_ENV $(head -1 /tmp/qdc_manip.yml | cut -d' ' -f2)
+
+WORKDIR /workspace
+
+# You can build way faster buy running
+# DOCKER_BUILDKIT=1 docker build --no-cache -t qdc_manip .
+

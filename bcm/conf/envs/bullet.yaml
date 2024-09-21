@@ -1,0 +1,140 @@
+---
+name: bullet
+render_mode: rgb_array
+depth: false
+pbd: false
+params:
+  deform_bending_stiffness: 5.0
+  deform_damping_stiffness: 0.1
+  deform_elastic_stiffness: 5.0
+  deform_friction_coeff: 0.1
+  mass: 1.0
+  scale: 1.0
+# =========== QUASI-STATIC
+params_quasi_static_cotton_rag_0:
+  deform_bending_stiffness: 23.1
+  deform_damping_stiffness: 0.010936132113290697
+  deform_elastic_stiffness: 15.754987119332865
+  deform_friction_coeff: 10.573467227076312
+  mass: 5.124330792242306
+  scale: 1.0
+params_quasi_static_cotton_rag_1:
+  deform_bending_stiffness: 23.1
+  deform_damping_stiffness: 0.010936132113290697
+  deform_elastic_stiffness: 15.754987119332865
+  deform_friction_coeff: 10.573467227076312
+  mass: 5.124330792242306
+  scale: 1.0
+params_quasi_static_cotton_rag_2:
+  deform_bending_stiffness: 23.1
+  deform_damping_stiffness: 0.010936132113290697
+  deform_elastic_stiffness: 15.754987119332865
+  deform_friction_coeff: 10.573467227076312
+  mass: 5.124330792242306
+  scale: 1.0
+params_quasi_static_linen_rag_0:
+  deform_bending_stiffness: 35.1
+  deform_damping_stiffness: 0.28425141112962415
+  deform_elastic_stiffness: 19.248282790207874
+  deform_friction_coeff: 0.19368230604330586
+  mass: 2.3496865231560715
+  scale: 1.0
+params_quasi_static_linen_rag_1:
+  deform_bending_stiffness: 35.1
+  deform_damping_stiffness: 0.28425141112962415
+  deform_elastic_stiffness: 19.248282790207874
+  deform_friction_coeff: 0.19368230604330586
+  mass: 2.3496865231560715
+  scale: 1.0
+params_quasi_static_linen_rag_2:
+  deform_bending_stiffness: 35.1
+  deform_damping_stiffness: 0.28425141112962415
+  deform_elastic_stiffness: 19.248282790207874
+  deform_friction_coeff: 0.19368230604330586
+  mass: 2.3496865231560715
+  scale: 1.0
+params_quasi_static_chequered_rag_0:
+  deform_bending_stiffness: 50.0
+  deform_damping_stiffness: 0.01
+  deform_elastic_stiffness: 0.1
+  deform_friction_coeff: 0.01
+  mass: 14.516049587446695
+  scale: 1.0
+params_quasi_static_chequered_rag_1:
+  deform_bending_stiffness: 50.0
+  deform_damping_stiffness: 0.01
+  deform_elastic_stiffness: 0.1
+  deform_friction_coeff: 0.01
+  mass: 14.516049587446695
+  scale: 1.0
+params_quasi_static_chequered_rag_2:
+  deform_bending_stiffness: 50.0
+  deform_damping_stiffness: 0.01
+  deform_elastic_stiffness: 0.1
+  deform_friction_coeff: 0.01
+  mass: 14.516049587446695
+  scale: 1.0
+# ==== DYNAMIC
+params_dynamic_linen_rag_0:
+  deform_bending_stiffness: 33.1
+  deform_damping_stiffness: 0.09379468481635984
+  deform_elastic_stiffness: 11.875934639368673
+  deform_friction_coeff: 9.767728590873741
+  mass: 0.3466716245702429
+  scale: 1.0
+params_dynamic_linen_rag_1:
+  deform_bending_stiffness: 33.1
+  deform_damping_stiffness: 0.09379468481635984
+  deform_elastic_stiffness: 11.875934639368673
+  deform_friction_coeff: 9.767728590873741
+  mass: 0.346671624570242
+  scale: 1.0
+params_dynamic_linen_rag_2:
+  deform_bending_stiffness: 33.1
+  deform_damping_stiffness: 0.09379468481635984
+  deform_elastic_stiffness: 11.875934639368673
+  deform_friction_coeff: 9.767728590873741
+  mass: 0.3466716245702429
+  scale: 1.0
+params_dynamic_chequered_rag_0:
+  deform_bending_stiffness: 34.1
+  deform_damping_stiffness: 0.10500658220158571
+  deform_elastic_stiffness: 12.668014640764635
+  deform_friction_coeff: 12.014267561937835
+  mass: 0.30067574990714535
+  scale: 1.0
+params_dynamic_chequered_rag_1:
+  deform_bending_stiffness: 34.1
+  deform_damping_stiffness: 0.10500658220158571
+  deform_elastic_stiffness: 12.668014640764635
+  deform_friction_coeff: 12.014267561937835
+  mass: 0.30067574990714535
+  scale: 1.0
+params_dynamic_chequered_rag_2:
+  deform_bending_stiffness: 34.1
+  deform_damping_stiffness: 0.10500658220158571
+  deform_elastic_stiffness: 12.668014640764635
+  deform_friction_coeff: 12.014267561937835
+  mass: 0.30067574990714535
+  scale: 1.0
+params_dynamic_cotton_rag_0:
+  deform_bending_stiffness: 36.1
+  deform_damping_stiffness: 0.06509712290594219
+  deform_elastic_stiffness: 6.468746664858747
+  deform_friction_coeff: 3.5407291041865507
+  mass: 0.5060169058928752
+  scale: 1.0
+params_dynamic_cotton_rag_1:
+  deform_bending_stiffness: 36.1
+  deform_damping_stiffness: 0.06509712290594219
+  deform_elastic_stiffness: 6.468746664858747
+  deform_friction_coeff: 3.5407291041865507
+  mass: 0.5060169058928752
+  scale: 1.0
+params_dynamic_cotton_rag_2:
+  deform_bending_stiffness: 36.1
+  deform_damping_stiffness: 0.06509712290594219
+  deform_elastic_stiffness: 6.468746664858747
+  deform_friction_coeff: 3.5407291041865507
+  mass: 0.5060169058928752
+  scale: 1.0

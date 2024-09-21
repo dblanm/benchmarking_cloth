@@ -1,0 +1,108 @@
+---
+name: softgym
+render_mode: rgb_array
+depth: false
+#camera_width: 640
+#camera_height: 640
+camera_width: 320
+camera_height: 288
+params:
+  mass: 0.5
+  # Maximum range that works is 1.5
+  # Otherwise there is no cloth
+  # Minimum is 0.5
+  # With 0.1 the cloth stretches too much
+  stretch: 0.5
+  bend: 0.5
+  shear: 0.5
+params_quasi_static_chequered_rag_0:
+  stretch: 0.5162870870328671
+  bend: 0.5024723107563237
+  shear: 0.5254005127292574
+  mass: 1.2930854189313763
+params_quasi_static_chequered_rag_1:
+  stretch: 0.7945145567766945
+  bend: 0.5007959918663696
+  shear: 1.030139577355093
+  mass: 1.4940085781091061
+params_quasi_static_chequered_rag_2:
+  stretch: 0.6451713738404745
+  bend: 0.5007955133627098
+  shear: 1.0828810314284907
+  mass: 1.0219974156986793
+params_quasi_static_cotton_rag_0:
+  stretch: 0.5131447722907425
+  bend: 0.5064533742198288
+  shear: 1.0920340905645776
+  mass: 1.3446991598400433
+params_quasi_static_cotton_rag_1:
+  stretch: 0.5557130401766885
+  bend: 0.5291834737330916
+  shear: 0.5001675990075065
+  mass: 1.2371688561424627
+params_quasi_static_cotton_rag_2:
+  stretch: 0.8957623302059234
+  bend: 0.5178623983516293
+  shear: 0.5652515621099272
+  mass: 1.1264279976416072
+params_quasi_static_linen_rag_0:
+  stretch: 0.5654943944675228
+  bend: 0.6498491718336901
+  shear: 0.8686551388047886
+  mass: 1.317150173767616
+params_quasi_static_linen_rag_1:
+  stretch: 0.5269376156346894
+  bend: 0.7479641625944295
+  shear: 0.7233925688302368
+  mass: 0.6242187500047891
+params_quasi_static_linen_rag_2:
+  stretch: 0.5060556634149745
+  bend: 0.5479052929614321
+  shear: 1.1026180261688812
+  mass: 1.274565540610007
+# ====== DYNAMIC
+params_dynamic_chequered_rag_0:
+  stretch: 0.5162870870328671
+  bend: 0.5024723107563237
+  shear: 0.5254005127292574
+  mass: 1.2930854189313763
+params_dynamic_chequered_rag_1:
+  stretch: 0.7945145567766945
+  bend: 0.5007959918663696
+  shear: 1.030139577355093
+  mass: 1.4940085781091061
+params_dynamic_chequered_rag_2:
+  stretch: 0.6451713738404745
+  bend: 0.5007955133627098
+  shear: 1.0828810314284907
+  mass: 1.0219974156986793
+params_dynamic_cotton_rag_0:
+  stretch: 0.5131447722907425
+  bend: 0.5064533742198288
+  shear: 1.0920340905645776
+  mass: 1.3446991598400433
+params_dynamic_cotton_rag_1:
+  stretch: 0.5557130401766885
+  bend: 0.5291834737330916
+  shear: 0.5001675990075065
+  mass: 1.2371688561424627
+params_dynamic_cotton_rag_2:
+  stretch: 0.8957623302059234
+  bend: 0.5178623983516293
+  shear: 0.5652515621099272
+  mass: 1.1264279976416072
+params_dynamic_linen_rag_0:
+  stretch: 0.5654943944675228
+  bend: 0.6498491718336901
+  shear: 0.8686551388047886
+  mass: 1.317150173767616
+params_dynamic_linen_rag_1:
+  stretch: 0.5269376156346894
+  bend: 0.7479641625944295
+  shear: 0.7233925688302368
+  mass: 0.6242187500047891
+params_dynamic_linen_rag_2:
+  stretch: 0.5060556634149745
+  bend: 0.5479052929614321
+  shear: 1.1026180261688812
+  mass: 1.274565540610007

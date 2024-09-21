@@ -1,0 +1,9 @@
+---
+#envs.params.stretch: interval(0.01, 2.0)
+#envs.params.bend: interval(0.01, 2.5)
+#envs.params.shear: interval(0.01, 2.5)
+#envs.params.mass: interval(0.1, 2.5)
+envs.params.stretch: interval(0.001, 3.0)
+envs.params.bend: interval(0.001, 3.5)
+envs.params.shear: interval(0.001, 3.5)
+envs.params.mass: interval(0.1, 5.0)

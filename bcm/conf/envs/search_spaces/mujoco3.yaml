@@ -1,0 +1,15 @@
+---
+envs.params.edge_damping: interval(0.01, 1.0)
+# Mass values of the actual cloth are within 0.05-0.10 Kg
+# With 0.05 values and similar the cloth does not stabilise within 1k steps so the mass will be too small
+envs.params.mass: interval(0.5, 20.0)
+# Wikipedia: Most materials have Poisson's ratio values ranging between 0.0 and 0.5. For soft materials,[1] such as rubber, where the bulk modulus is much higher than the shear modulus, Poisson's ratio is near 0.5.
+# Looking at this paper "ELASTIC PROPERTIES OF COTTON FABRIC BASED POLYMER COMPOSITIES"
+# and this one "Modeling and analysis of the effect of substrate on the flexible piezoelectric films for kinetic energy harvesting from textiles"
+# The ratio falls within 0.35-0.5
+envs.params.plugin_config_poisson_value: interval(0.35, 0.5)
+envs.params.plugin_config_thickness_value: interval(5e-4, 5e-3)
+# Expressed in Pa. Values are of the order of GigaPascals (5 to 13e9) [Pa]
+# However these values don't work at all, let's search within 1e3-1e5.
+#  4e5 also gives unstable issues
+envs.params.plugin_config_young_value: interval(1e3, 1e5)

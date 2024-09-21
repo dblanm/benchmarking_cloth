@@ -1,0 +1,15 @@
+---
+# envs.params.youngmodulus: range(1000, 4000)
+## The Poisson's ratio of a stable, isotropic, linear
+## elastic material must be between −1.0 and +0.5
+# However, SOFA only allows larger than 0.0
+# envs.params.poissonratio: interval(-1.0, 0.5)
+# envs.params.damping: interval(0.5, 1.5)
+# envs.params.stiffness: interval(50, 150)
+# envs.params.vertex_mass: interval(0.05, 0.1)
+envs.params.youngmodulus: range(1e2, 1e5)
+#envs.params.youngmodulus: range(100, 4000)
+envs.params.poissonratio: interval(0.1, 1.0)
+envs.params.damping: interval(0.01, 5.5)
+envs.params.stiffness: interval(1, 150)
+envs.params.vertex_mass: interval(0.05, 1.0)

@@ -1,0 +1,43 @@
+name: bcm
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+  - iopath
+  - pytorch3d
+  - nvidia
+dependencies:
+#  - pytorch::pytorch=1.12.1
+#  - cudatoolkit=10.2
+  - pytorch3d
+  - matplotlib=3.5.3
+  - numpy=1.21.0
+  - pip
+  - pybind11
+  - python=3.9
+  - pip:
+    - imageio==2.21.2
+    - imageio-ffmpeg==0.4.7
+    - pandas==2.0.3
+    - gym==0.26.1
+    - moviepy==1.0.3
+    - mujoco==3.1.0
+    - tensorboard==2.8.0
+    - tensorboardx==2.4.1
+    - wandb==0.13.2
+    - git+https://github.com/Barbany/sim_utils.git
+    - black==22.10.0
+    - isort==5.10.1
+    - flake8==5.0.4
+    - pybullet==3.2.5
+    - scipy==1.7.3
+    - shapely==1.8.5.post1
+    - opencv-python-headless==4.10.0.84
+    - pyquaternion==0.9.5
+    - hydra-core==1.3.2
+    - hydra-optuna-sweeper==1.2.0
+    - gpyopt==1.2.6
+    - pymoo==0.6.1.1
+    - kornia==0.7.1
+    - point_cloud_utils==0.30.4
+    - open3d-cpu==0.17.0

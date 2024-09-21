@@ -1,0 +1,4 @@
+---
+name: ismogan
+encoder_checkpoint_file: checkpoints/ismogan_encoder_170.pkl
+decoder_checkpoint_file: checkpoints/ismogan_decoder_170.pkl

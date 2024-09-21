@@ -1,0 +1,9 @@
+---
+name: mp_sft
+image_matcher: synthetic
+max_it: 200
+lambda_time: 1.0
+lambda_metric: 1.0
+lr_update: 1e-4
+patience_template: 300
+patience_update: 20

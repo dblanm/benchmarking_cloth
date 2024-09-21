@@ -1,0 +1,176 @@
+FROM ubuntu:20.04
+# FROM nvidia/cuda:11.1.1-devel-ubuntu20.04
+# INSTALL SOFA DEPENDENCIES
+SHELL ["/bin/bash", "-c"]
+
+# Install APT tools and repos
+RUN apt-get update && apt-get upgrade -y
+RUN apt-get install -y \
+    apt-utils \
+    software-properties-common
+RUN add-apt-repository ppa:git-core/ppa
+RUN apt-get update && apt-get upgrade -y
+
+# Install system tools
+RUN apt-get install -y \
+    git \
+    net-tools \
+    vim \
+    wget \
+    curl \
+    zip \
+    unzip \
+    patchelf
+
+# Install compilers
+RUN apt-get install -y \
+    build-essential \
+    ninja-build \
+    gcc-7 g++-7 \
+    clang \
+    ccache
+
+# Install core deps
+RUN apt-get install -y \
+    libglew-dev \
+    freeglut3-dev \
+    zlib1g-dev \
+    libeigen3-dev
+
+# Install plugins deps
+RUN apt-get install -y \
+    python3.9-dev python3-pip \
+    libpng-dev libjpeg-dev libtiff-dev \
+    libblas-dev \
+    liblapack-dev \
+    libsuitesparse-dev \
+    libavcodec-dev libavformat-dev libavutil-dev libswscale-dev \
+    libassimp-dev \
+    libbullet-dev \
+    liboce-ocaf-dev \
+    libzmq3-dev liboscpack-dev \
+    libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev
+
+RUN python3.9 -m pip install --upgrade pip \
+    && python3.9 -m pip install numpy scipy pygame
+
+ENV VM_HAS_ASSIMP="true"
+# BulletColisionDetection is broken
+ENV VM_HAS_BULLET="disabled"
+ENV VM_HAS_OPENCASCADE="true"
+
+###################################
+
+# Install CMake
+ARG CMAKE_MAJOR=3
+ARG CMAKE_MINOR=12
+ARG CMAKE_PATCH=0
+ADD https://github.com/Kitware/CMake/releases/download/v$CMAKE_MAJOR.$CMAKE_MINOR.$CMAKE_PATCH/cmake-$CMAKE_MAJOR.$CMAKE_MINOR.$CMAKE_PATCH-Linux-x86_64.sh /tmp/cmake.sh
+RUN chmod a+x /tmp/cmake.sh
+RUN /tmp/cmake.sh --skip-license --prefix=/usr/local
+
+# Install Qt - Updated version and required packages
+ARG QT_MAJOR=5
+ARG QT_MINOR=15
+ARG QT_PATCH=2
+RUN add-apt-repository -y ppa:beineri/opt-qt-$QT_MAJOR.$QT_MINOR.$QT_PATCH-focal \
+    && apt-get update \
+    && apt-get install -y  qt${QT_MAJOR}${QT_MINOR}charts-no-lgpl qt${QT_MAJOR}${QT_MINOR}webengine qt${QT_MAJOR}${QT_MINOR}wayland \
+    && rm -rf /opt/qt${QT_MAJOR}${QT_MINOR}/doc \
+    && rm -rf /opt/qt${QT_MAJOR}${QT_MINOR}/examples
+ADD https://www.sofa-framework.org/wp-content/uploads/2020/06/QtInstallerFramework_3.0_Linux.zip /tmp
+RUN unzip /tmp/QtInstallerFramework_3.0_Linux.zip -d /builds && chmod -R a+x /builds/Qt
+ENV QTIFWDIR="/builds/Qt/Tools/QtInstallerFramework/3.0"
+ENV PATH="${QTIFWDIR}/bin:${PATH}"
+
+# Install Boost
+ARG BOOST_MAJOR=1
+ARG BOOST_MINOR=67
+RUN add-apt-repository -y ppa:mhier/libboost-latest \
+    && apt-get update \
+    && apt-get install -y libboost$BOOST_MAJOR.$BOOST_MINOR-dev
+
+# Install CGAL
+# Due to dependencies on Boost and Qt, we have to build CGAL
+# New: Let's try installing it instead of building
+RUN apt-get install -y libcgal-dev libcgal-qt5-dev
+
+# Install CUDA
+RUN apt-get install -y nvidia-cuda-toolkit
+ENV VM_HAS_CUDA="true"
+ENV VM_CUDA_HOST_COMPILER="/usr/bin/gcc-6"
+ENV VM_CUDA_ARCH="sm_50"
+
+# Install NodeEditor (needed by SofaQtQuick)
+ARG NODE_MAJOR=2
+ARG NODE_MINOR=1
+ARG NODE_PATCH=3
+RUN git clone -b $NODE_MAJOR.$NODE_MINOR.$NODE_PATCH --depth 1 https://github.com/paceholder/nodeeditor.git /tmp/nodeeditor/src \
+    && mkdir /tmp/nodeeditor/build && cd /tmp/nodeeditor/build \
+    && cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=OFF -DBUILD_TESTING=OFF ../src \
+    && make --silent install
+
+# Install pybind11 (needed by SofaPython3)
+ARG PYBIND_MAJOR=2
+ARG PYBIND_MINOR=11
+RUN git clone -b v$PYBIND_MAJOR.$PYBIND_MINOR --depth 1 https://github.com/pybind/pybind11.git /tmp/pybind11/src \
+    && mkdir /tmp/pybind11/build && cd /tmp/pybind11/build \
+    && cmake -DCMAKE_BUILD_TYPE=Release -DPYTHON_EXECUTABLE=/usr/bin/python3.9 -DPYBIND11_TEST=OFF ../src \
+    && make --silent install
+
+# Disable core dumps
+RUN printf '\n# Disable core dumps\n* soft core 0\n* hard core 0\n' >> /etc/security/limits.conf
+
+# Init /builds directory
+WORKDIR /builds
+
+# Set env vars
+ENV HOME="/builds"
+ENV PYTHONIOENCODING="UTF-8"
+#ENV PYTHONUSERBASE="/tmp/pythonuserbase"
+#RUN mkdir -p "$PYTHONUSERBASE" && chmod -R 777 "$PYTHONUSERBASE"
+ENV PYTHON3_EXECUTABLE="/usr/bin/python3.9"
+
+# Cleanup
+RUN apt-get clean -y \
+    && apt-get autoremove -y \
+    && rm -rf /tmp/*
+
+# In-process env settings
+#COPY docker-entrypoint.sh /
+#RUN chmod a+x /docker-entrypoint.sh
+#ENTRYPOINT ["/docker-entrypoint.sh"]
+
+################ SOFA INSTALLATION
+# Create the SOFA folder and download it
+RUN mkdir -p /builds/sofa/ && mkdir -p /builds/sofa/build && mkdir -p /builds/sofa/src
+WORKDIR /builds/sofa/
+RUN git clone https://github.com/sofa-framework/sofa.git --branch v23.06.00  /builds/sofa/src && cd /builds/sofa/build
+#RUN wget "https://github.com/sofa-framework/sofa/archive/refs/tags/v23.06.00.zip" /builds/sofa/
+#RUN unzip /builds/sofa/sofa-23.06.00.zip && mv /builds/sofa/sofa-23.06.00 /builds/sofa/src
+
+# Environment variables for SOFA
+ENV SOFA_DIR="/builds/sofa/"
+ENV SOFA_SRC="/builds/sofa/src/"
+ENV SOFA_BUILD="/builds/sofa/build/"
+ENV SOFA_ROOT="/builds/sofa/build/install"
+
+
+
+# run the same as with cmake-gui
+RUN cd /builds/sofa/build/ && cmake ../src -DCMAKE_BUILD_TYPE=Release -DCMAKE_PREFIX_PATH=$SOFA_ROOT/lib/cmake \
+-DCMAKE_INSTALL_PREFIX=$SOFA_ROOT && make -j6 && make install
+
+# The python fetch doesn't work if the GUI is not used, let's instead
+RUN git clone https://github.com/sofa-framework/SofaPython3.git -b release-v23.06 $SOFA_DIR/SofaPython3/src
+RUN mkdir $SOFA_DIR/SofaPython3/build && mkdir $SOFA_DIR/SofaPython3/install
+
+# Now cmake, build and install the bindings
+RUN cd $SOFA_DIR/SofaPython3/build && \
+ cmake -DCMAKE_PREFIX_PATH=$SOFA_ROOT/lib/cmake -DCMAKE_BUILD_TYPE=Release \
+ -DCMAKE_INSTALL_PREFIX=$SOFA_ROOT/SofaPython3/install -B $SOFA_DIR/SofaPython3/build \
+  $SOFA_DIR/SofaPython3/src && make -j6 && cmake --install $SOFA_DIR/SofaPython3/build
+
+# Required argument so that we can find the SP3 libs
+ENV PYTHONPATH=/builds/sofa/SofaPython3/build/lib/python3/site-packages/:$PYTHONPATH
+

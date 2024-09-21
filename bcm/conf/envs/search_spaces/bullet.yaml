@@ -1,0 +1,17 @@
+---
+#envs.params.deform_bending_stiffness: range(1.0, 10.0)
+## The Poisson's ratio of a stable, isotropic, linear
+## elastic material must be between −1.0 and +0.5
+#envs.params.deform_damping_stiffness: interval(0.1, 1.0)
+#envs.params.deform_elastic_stiffness: interval(1.0, 5.0)
+#envs.params.deform_friction_coeff: interval(0.1, 1.0)
+#envs.params.mass: interval(0.5, 2.0)
+
+envs.params.deform_bending_stiffness: range(0.1, 50.0)
+# The Poisson's ratio of a stable, isotropic, linear
+# elastic material must be between −1.0 and +0.5
+envs.params.deform_damping_stiffness: interval(0.01, 5.0)
+envs.params.deform_elastic_stiffness: interval(0.1, 20.0)
+envs.params.deform_friction_coeff: interval(0.01, 20.0)
+envs.params.mass: interval(0.01, 20.0)
+envs.params.scale: interval(1.0, 100.0)

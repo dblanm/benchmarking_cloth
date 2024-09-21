@@ -1,0 +1,127 @@
+---
+name: mujoco3
+render_mode: rgb_array
+#render_mode: None
+depth: false
+width: 320
+height: 288
+params:
+  edge_damping: 0.1
+  mass: 5.0
+  plugin_config_poisson_value: 1.0
+  plugin_config_thickness_value: 1e-3
+  plugin_config_young_value: 3e3
+# CHEQUERED DYNAMIC
+params_dynamic_chequered_rag_0:
+  edge_damping: 1.0
+  mass: 2.552954456795875
+  plugin_config_poisson_value: 0.4032740512363587
+  plugin_config_thickness_value: 0.0005
+  plugin_config_young_value: 85242.02369946481
+params_dynamic_chequered_rag_1:
+  edge_damping: 1.0
+  mass: 2.552954456795875
+  plugin_config_poisson_value: 0.4032740512363587
+  plugin_config_thickness_value: 0.0005
+  plugin_config_young_value: 85242.02369946481
+params_dynamic_chequered_rag_2:
+  edge_damping: 1.0
+  mass: 2.552954456795875
+  plugin_config_poisson_value: 0.4032740512363587
+  plugin_config_thickness_value: 0.0005
+  plugin_config_young_value: 85242.02369946481
+# COTTON DYNAMIC
+params_dynamic_cotton_rag_0:
+  edge_damping: 0.9393474140432583
+  mass: 4.74522742085005
+  plugin_config_poisson_value: 0.4805048335852764
+  plugin_config_thickness_value: 0.0008403439286076326
+  plugin_config_young_value: 84581.53379539339
+params_dynamic_cotton_rag_1:
+  edge_damping: 0.9393474140432583
+  mass: 4.74522742085005
+  plugin_config_poisson_value: 0.4805048335852764
+  plugin_config_thickness_value: 0.0008403439286076326
+  plugin_config_young_value: 84581.53379539339
+params_dynamic_cotton_rag_2:
+  edge_damping: 0.9393474140432583
+  mass: 4.74522742085005
+  plugin_config_poisson_value: 0.4805048335852764
+  plugin_config_thickness_value: 0.0008403439286076326
+  plugin_config_young_value: 84581.53379539339
+# LINEN DYNAMIC
+params_dynamic_linen_rag_0:
+  edge_damping: 0.6129063008110749
+  mass: 2.293704983672845
+  plugin_config_poisson_value: 0.4460914019469813
+  plugin_config_thickness_value: 0.000995773513319999
+  plugin_config_young_value: 35080.93893341969
+params_dynamic_linen_rag_1:
+  edge_damping: 0.6129063008110749
+  mass: 2.293704983672845
+  plugin_config_poisson_value: 0.4460914019469813
+  plugin_config_thickness_value: 0.000995773513319999
+  plugin_config_young_value: 35080.93893341969
+params_dynamic_linen_rag_2:
+  edge_damping: 0.6129063008110749
+  mass: 2.293704983672845
+  plugin_config_poisson_value: 0.4460914019469813
+  plugin_config_thickness_value: 0.000995773513319999
+  plugin_config_young_value: 35080.93893341969
+#  1.89584850e-01 1.16809632e+01 4.83287224e-01 9.04203941e-04 4.04508041e+04
+params_quasi_static_chequered_rag_0:
+  edge_damping: 1.89584850e-01
+  mass: 1.16809632e+01
+  plugin_config_poisson_value: 4.83287224e-01
+  plugin_config_thickness_value: 9.04203941e-04
+  plugin_config_young_value: 4.04508041e+04
+params_quasi_static_chequered_rag_1:
+  edge_damping: 1.89584850e-01
+  mass: 1.16809632e+01
+  plugin_config_poisson_value: 4.83287224e-01
+  plugin_config_thickness_value: 9.04203941e-04
+  plugin_config_young_value: 4.04508041e+04
+params_quasi_static_chequered_rag_2:
+  edge_damping: 1.89584850e-01
+  mass: 1.16809632e+01
+  plugin_config_poisson_value: 4.83287224e-01
+  plugin_config_thickness_value: 9.04203941e-04
+  plugin_config_young_value: 4.04508041e+04
+#  6.92710861e-01 1.06445973e+01 4.14071226e-01 1.23847812e-03 1.08469054e+04
+params_quasi_static_cotton_rag_0:
+  edge_damping: 6.92710861e-01
+  mass: 1.06445973e+01
+  plugin_config_poisson_value: 4.14071226e-01
+  plugin_config_thickness_value: 1.23847812e-03
+  plugin_config_young_value: 1.08469054e+04
+params_quasi_static_cotton_rag_1:
+  edge_damping: 6.92710861e-01
+  mass: 1.06445973e+01
+  plugin_config_poisson_value: 4.14071226e-01
+  plugin_config_thickness_value: 1.23847812e-03
+  plugin_config_young_value: 1.08469054e+04
+params_quasi_static_cotton_rag_2:
+  edge_damping: 6.92710861e-01
+  mass: 1.06445973e+01
+  plugin_config_poisson_value: 4.14071226e-01
+  plugin_config_thickness_value: 1.23847812e-03
+  plugin_config_young_value: 1.08469054e+04
+#  4.58924452e-01 8.23135552e+00 4.29801840e-01 1.19059932e-03 6.05255901e+04
+params_quasi_static_linen_rag_0:
+  edge_damping: 4.58924452e-01
+  mass: 8.23135552e+00
+  plugin_config_poisson_value: 4.29801840e-01
+  plugin_config_thickness_value: 1.19059932e-03
+  plugin_config_young_value: 6.05255901e+04
+params_quasi_static_linen_rag_1:
+  edge_damping: 4.58924452e-01
+  mass: 8.23135552e+00
+  plugin_config_poisson_value: 4.29801840e-01
+  plugin_config_thickness_value: 1.19059932e-03
+  plugin_config_young_value: 6.05255901e+04
+params_quasi_static_linen_rag_2:
+  edge_damping: 4.58924452e-01
+  mass: 8.23135552e+00
+  plugin_config_poisson_value: 4.29801840e-01
+  plugin_config_thickness_value: 1.19059932e-03
+  plugin_config_young_value: 6.05255901e+04
