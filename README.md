@@ -26,8 +26,8 @@ conda activate bcm
 
 Then, clone this repository, start the submodules and install its contents as follows:
 ```
-git clone git@github.com:dblanm/dynamic_dual_manip.git
-cd dynamic_dual_manip
+git clone git@github.com:dblanm/benchmarking_cloth.git
+cd benchmarking_cloth
 git submodule init
 git submodule update
 /path_to_your_conda_env/bin/pip install -e .
